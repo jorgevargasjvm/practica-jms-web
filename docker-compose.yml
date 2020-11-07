@@ -1,2 +1,34 @@
 version: '3.8'
 services:
+  broker:
+    image: jorgevargasjvm/practica-jms-web
+    ports:
+      - 5656:5656
+    networks:
+      - practica-jms
+  
+  cliente1:
+    image: jorgevargasjvm/practica-jms-sensors
+    depends_on:
+      - web
+    networks:
+      - practica-jms
+    
+  cliente2:
+    image: jorgevargasjvm/practica-jms-sensors
+    depends_on:
+      - web
+    networks:
+      - practica-jms
+      
+  web:
+    image: jorgevargasjvm/practica-jms-web
+    ports:
+      - 80:8080
+    depends_on:
+      - broker
+    networks:
+      - practica-jms
+      
+  networks:
+    practica-jms:
