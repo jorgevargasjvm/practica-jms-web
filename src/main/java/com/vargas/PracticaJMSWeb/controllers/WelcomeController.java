@@ -24,12 +24,12 @@ public class WelcomeController {
 	
 	@GetMapping("/messages/graphs")
     public String graficas(Model model){
-		float tDevice1[] = new float[]{ 0, 0, 0, 0, 0 };
-        float tDevice2[] = new float[]{ 0, 0, 0, 0, 0 };
-        float hDevice1[] = new float[]{ 0, 0, 0, 0, 0 };
-        float hDevice2[] = new float[]{ 0, 0, 0, 0, 0 };
-        
         List<Message> messages = ms.getListMessages();
+        
+        float tDevice1[] = new float[messages.size()];
+        float tDevice2[] = new float[messages.size()];
+        float hDevice1[] = new float[messages.size()];
+        float hDevice2[] = new float[messages.size()];
         
         int indicator1 = 0;
         int indicator2 = 0;

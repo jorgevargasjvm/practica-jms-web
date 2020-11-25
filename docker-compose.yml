@@ -2,6 +2,8 @@ version: '3.5'
 services:
   sensor1:
     image: jorgevargasjvm/practica-jms-sensors
+    environment:
+      id: 1
     depends_on:
       - webbroker
     networks:
@@ -9,6 +11,8 @@ services:
     
   sensor2:
     image: jorgevargasjvm/practica-jms-sensors
+    environment:
+      id: 2
     depends_on:
       - webbroker
     networks:
