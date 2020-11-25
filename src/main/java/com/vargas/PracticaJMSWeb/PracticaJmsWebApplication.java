@@ -33,14 +33,14 @@ public class PracticaJmsWebApplication {
 		//broker
 		try {
             BrokerService broker = new BrokerService();
-            broker.addConnector("tcp://0.0.0.0:61616");
+            broker.addConnector("tcp://webbroker:61616");
             broker.setPersistent(false);
             broker.start();
         }catch (Exception ex){
             ex.printStackTrace();
         }
 		//Consumer
-		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("root", "1234", "failover:tcp://0.0.0.0:61616");
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("root", "1234", "failover:tcp://webbroker:61616");
 		Connection connection = factory.createConnection();
 		connection.start();
 		
