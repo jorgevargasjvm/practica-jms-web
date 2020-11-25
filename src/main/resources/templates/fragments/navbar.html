@@ -1,8 +1,8 @@
 <header>
  <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand d-none d-md-block" href="/home" th:text="#{application.name}"></a>
-    <a class="navbar-brand d-block d-sm-block d-md-none" href="/home" th:text="#{application.name.short}"></a>
+    <a class="navbar-brand d-none d-md-block" href="/" th:text="#{application.name}"></a>
+    <a class="navbar-brand d-block d-sm-block d-md-none" href="/" th:text="#{application.name.short}"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" 
     	aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,7 +20,7 @@
 			</div>
 		</li>
 		<li class="nav-item">
-    		<a class="nav-link" href="#" th:text="#{navbar.title.graphs}"></a>
+    		<a class="nav-link" href="/messages/graphs" th:text="#{navbar.title.graphs}"></a>
   		</li>
       </ul>
     </div>

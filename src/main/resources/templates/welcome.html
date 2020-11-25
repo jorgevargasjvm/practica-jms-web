@@ -11,24 +11,26 @@
 	    <h1 class="mt-5" th:text="#{body.welcome}"></h1>
 	    <p th:text="#{body.msg1}"></p>
 	    
-	    <table class="table my-3">
-		  <thead>
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">DEVICE</th>
-		      <th scope="col">TEMPERATURE</th>
-		      <th scope="col">HUMIDITY</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr th:each="message: ${messages}">
-			    <td th:text="${message.id}" />
-			    <td th:text="${message.idDevice}" />
-			    <td th:text="${message.temperature}" />
-			    <td th:text="${message.humidity}" />
-			</tr>
-		  </tbody>
-		</table>
+	    <div class="table-responsive">
+		    <table class="table my-3">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">DEVICE</th>
+			      <th scope="col">TEMPERATURE</th>
+			      <th scope="col">HUMIDITY</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr th:each="message: ${messages}">
+				    <td th:text="${message.id}" />
+				    <td th:text="${message.idDevice}" />
+				    <td th:text="${message.temperature}" />
+				    <td th:text="${message.humidity}" />
+				</tr>
+			  </tbody>
+			</table>
+		</div>
 		
 	  </div>
 	</main>

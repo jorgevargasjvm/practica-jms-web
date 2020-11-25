@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="h-100">
+  <head th:replace="fragments/head.html"></head>
+  <body class="d-flex flex-column h-100">
+    
+    <header th:replace="fragments/navbar.html"></header>
+	
+	<!-- Begin page content -->
+	<main role="main" class="flex-shrink-0">
+	  <div class="container">
+	    <h1 class="mt-5" th:text="#{body.msg2}"></h1>
+	    
+	    <h3 th:text="#{body.title.graphs1}"></h3><br>
+
+	    <div class="row">
+	        <div class="col-md-6">
+	            <div id="chart_div1"></div>
+	        </div>
+	        <div class="col-md-6">
+	            <div id="chart_div2"></div>
+	        </div>
+	    </div>
+	
+	    <h3 th:text="#{body.title.graphs2}"></h3><br>
+	
+	    <div class="row">
+	        <div class="col-md-6">
+	            <div id="chart_div3"></div>
+	        </div>
+	        <div class="col-md-6">
+	            <div id="chart_div4"></div>
+	        </div>
+	    </div>
+	    
+	    <script src="/js/loader.js"></script>
+	    <script type="text/javascript" th:inline="javascript">
+	        google.charts.load('current', {packages: ['corechart', 'line']});
+	        google.charts.setOnLoadCallback(drawBackgroundColor);
+	
+	        function drawBackgroundColor() {
+	            var data1 = new google.visualization.DataTable();
+	            data1.addColumn('number', 'X');
+	            data1.addColumn('number', 'Temperature');
+	
+	            data1.addRows([
+	                [0, 0],
+	                [10, [[${tDevice1[0]}]]],
+	                [20, [[${tDevice1[1]}]]],
+	                [30, [[${tDevice1[2]}]]],
+	                [40, [[${tDevice1[3]}]]],
+	                [50, [[${tDevice1[4]}]]]
+	            ]);
+	
+	            var options1 = {
+	                hAxis: {
+	                    title: 'Time'
+	                },
+	                vAxis: {
+	                    title: 'Temperature'
+	                },
+	                backgroundColor: '#ffffff'
+	            };
+	
+	            var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+	
+	            var data2 = new google.visualization.DataTable();
+	            data2.addColumn('number', 'X');
+	            data2.addColumn('number', 'Humidity');
+	
+	            data2.addRows([
+	                [0, 0],
+	                [10, [[${hDevice1[0]}]]],
+	                [20, [[${hDevice1[1]}]]],
+	                [30, [[${hDevice1[2]}]]],
+	                [40, [[${hDevice1[3]}]]],
+	                [50, [[${hDevice1[4]}]]]
+	            ]);
+	
+	            var options2 = {
+	                hAxis: {
+	                    title: 'Time'
+	                },
+	                vAxis: {
+	                    title: 'Humidity'
+	                },
+	                backgroundColor: '#ffffff'
+	            };
+	
+	            var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+	
+	            var data3 = new google.visualization.DataTable();
+	            data3.addColumn('number', 'X');
+	            data3.addColumn('number', 'Temperature');
+	
+	            data3.addRows([
+	                [0, 0],
+	                [10, [[${tDevice2[0]}]]],
+	                [20, [[${tDevice2[1]}]]],
+	                [30, [[${tDevice2[2]}]]],
+	                [40, [[${tDevice2[3]}]]],
+	                [50, [[${tDevice2[4]}]]]
+	            ]);
+	
+	            var options3 = {
+	                hAxis: {
+	                    title: 'Time'
+	                },
+	                vAxis: {
+	                    title: 'Temperature'
+	                },
+	                backgroundColor: '#ffffff'
+	            };
+	
+	            var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+	
+	            var data4 = new google.visualization.DataTable();
+	            data4.addColumn('number', 'X');
+	            data4.addColumn('number', 'Humidity');
+	
+	            data4.addRows([
+	                [0, 0],
+	                [10, [[${hDevice2[0]}]]],
+	                [20, [[${hDevice2[1]}]]],
+	                [30, [[${hDevice2[2]}]]],
+	                [40, [[${hDevice2[3]}]]],
+	                [50, [[${hDevice2[4]}]]]
+	            ]);
+	
+	            var options4 = {
+	                hAxis: {
+	                    title: 'Time'
+	                },
+	                vAxis: {
+	                    title: 'Humidity'
+	                },
+	                backgroundColor: '#ffffff'
+	            };
+	
+	            var chart4 = new google.visualization.LineChart(document.getElementById('chart_div4'));
+	
+	            chart1.draw(data1, options1);
+	            chart2.draw(data2, options2);
+	            chart3.draw(data3, options3);
+	            chart4.draw(data4, options4);
+	        }
+	    </script>
+		
+	  </div>
+	</main>
+	
+	<footer class="footer mt-auto py-3">
+	  <div class="container">
+	    <span class="text-muted"><b th:text="#{footer.version}"></b> 0.1.0</span>
+	  </div>
+	</footer>
+
+    <div th:replace="fragments/js.html"></div>
+  </body>
+</html>

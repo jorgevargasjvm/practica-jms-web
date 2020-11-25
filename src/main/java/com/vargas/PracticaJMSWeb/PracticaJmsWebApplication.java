@@ -2,7 +2,6 @@ package com.vargas.PracticaJMSWeb;
 
 import javax.annotation.PostConstruct;
 import javax.jms.Connection;
-import javax.jms.JMSException;
 import javax.jms.MessageConsumer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
@@ -30,36 +29,37 @@ public class PracticaJmsWebApplication {
 	}
 	
 	@PostConstruct
-    public void initBrokerConsumer() throws JMSException {
-//		//broker
-//		try {
-//            BrokerService broker = new BrokerService();
-//            broker.addConnector("tcp://0.0.0.0:5656");
-//            broker.start();
-//        }catch (Exception ex){
-//            ex.printStackTrace();
-//        }
-//		//Consumer
-//		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("root", "1234", "failover:tcp://0.0.0.0:5656");
-//		Connection connection = factory.createConnection();
-//		connection.start();
-//		
-//		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-//		
-//		Topic topic = session.createTopic("sensors_reports");
-//		MessageConsumer consumer = session.createConsumer(topic);
-//		consumer.setMessageListener(message -> {
-//            try {
-//            	ObjectMapper om = new ObjectMapper();
-//            	om.registerModule(new JavaTimeModule());
-//                
-//                TextMessage msg = (TextMessage) message;
-//                Message msg1 = om.readValue(msg.getText(), Message.class);
-//                ms.saveMessage(msg1);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
+    public void initBrokerConsumer() throws Exception {
+		//broker
+		try {
+            BrokerService broker = new BrokerService();
+            broker.addConnector("tcp://0.0.0.0:61616");
+            broker.setPersistent(false);
+            broker.start();
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+		//Consumer
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("root", "1234", "failover:tcp://0.0.0.0:61616");
+		Connection connection = factory.createConnection();
+		connection.start();
+		
+		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		
+		Topic topic = session.createTopic("sensors_reports");
+		MessageConsumer consumer = session.createConsumer(topic);
+		consumer.setMessageListener(message -> {
+            try {
+            	ObjectMapper om = new ObjectMapper();
+            	om.registerModule(new JavaTimeModule());
+                
+                TextMessage msg = (TextMessage) message;
+                Message msg1 = om.readValue(msg.getText(), Message.class);
+                ms.saveMessage(msg1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }

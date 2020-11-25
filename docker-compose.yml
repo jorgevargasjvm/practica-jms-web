@@ -7,14 +7,14 @@ services:
     networks:
       - practica-jms
   
-  cliente1:
+  sensor1:
     image: jorgevargasjvm/practica-jms-sensors
     depends_on:
       - web
     networks:
       - practica-jms
     
-  cliente2:
+  sensor2:
     image: jorgevargasjvm/practica-jms-sensors
     depends_on:
       - web
