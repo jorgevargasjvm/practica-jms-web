@@ -1,6 +1,6 @@
-FROM openjdk:11.0.8-jdk-nanoserver
+FROM openjdk:11.0.8-jre-slim
 
-EXPOSE 8080 5656
+EXPOSE 8080 61616
 
 LABEL maintainer="Jorge Vargas <jorgevargasmateo@hotmail.com>"
 
